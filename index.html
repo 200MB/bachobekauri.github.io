@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>bacho bekauri — dev</title>
+<title>bacho bekauri</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,14 +36,12 @@
   a { color: var(--amber); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
-  /* ── layout ── */
   .shell {
     max-width: 860px;
     margin: 0 auto;
     padding: 60px 32px 120px;
   }
 
-  /* ── prompt lines ── */
   .prompt {
     color: var(--muted);
     font-size: 12px;
@@ -53,7 +51,7 @@
   }
   .prompt::before { content: '$ '; color: var(--amber); }
 
-  /* ── hero ── */
+  /* HERO */
   .hero { margin-bottom: 72px; padding-top: 20px; }
 
   .hero-name {
@@ -107,9 +105,9 @@
 
   .hero-links {
     display: flex;
-    gap: 24px;
+    flex-wrap: wrap;
+    gap: 20px;
     font-size: 12px;
-    color: var(--muted);
   }
 
   .hero-links a {
@@ -119,11 +117,10 @@
     gap: 6px;
     transition: color 0.15s;
   }
-
   .hero-links a:hover { color: var(--text); text-decoration: none; }
-  .hero-links a::before { content: '↗'; font-size: 10px; color: var(--amber); }
+  .hero-links a::before { content: 'ss'; font-size: 10px; color: var(--amber); content: '\2197'; }
 
-  /* ── section ── */
+  /* SECTION */
   .section { margin-bottom: 64px; }
 
   .section-header {
@@ -148,7 +145,7 @@
     color: var(--dim);
   }
 
-  /* ── project rows ── */
+  /* PROJECTS */
   .project-list { display: flex; flex-direction: column; }
 
   .project-row {
@@ -156,14 +153,18 @@
     grid-template-columns: 28px 1fr auto;
     gap: 0 16px;
     align-items: start;
-    padding: 16px 0;
+    padding: 18px 0;
     border-bottom: 1px solid var(--border);
-    position: relative;
     transition: background 0.1s;
   }
 
   .project-row:last-child { border-bottom: none; }
-  .project-row:hover { background: var(--surface); margin: 0 -16px; padding: 16px 16px; }
+
+  .project-row:hover {
+    background: var(--surface);
+    margin: 0 -14px;
+    padding: 18px 14px;
+  }
 
   .project-index {
     font-size: 11px;
@@ -177,18 +178,17 @@
   .project-name {
     font-size: 14px;
     font-weight: 500;
-    color: var(--text);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   .project-name a {
     color: var(--text);
     transition: color 0.15s;
   }
-
   .project-name a:hover { color: var(--amber); text-decoration: none; }
 
   .lang-pill {
@@ -203,33 +203,27 @@
   .project-desc {
     font-size: 12px;
     color: var(--muted);
-    line-height: 1.6;
-    max-width: 540px;
+    line-height: 1.7;
   }
 
   .project-desc strong {
-    color: #999;
-    font-weight: 400;
+    color: #aaa;
+    font-weight: 500;
   }
 
   .project-meta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 6px;
     padding-top: 3px;
-  }
-
-  .star {
     font-size: 11px;
     color: var(--dim);
+    white-space: nowrap;
   }
-  .star.has-star { color: var(--amber); }
 
-  /* ── skills grid ── */
+  .project-meta.lit { color: var(--amber); }
+
+  /* SKILLS */
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
@@ -237,7 +231,7 @@
 
   .skill-cell {
     background: var(--bg);
-    padding: 14px 16px;
+    padding: 16px 18px;
   }
 
   .skill-category {
@@ -245,13 +239,13 @@
     letter-spacing: 0.1em;
     color: var(--amber);
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   .skill-items {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
   }
 
   .skill-item {
@@ -259,12 +253,12 @@
     color: var(--muted);
   }
 
-  /* ── edu / exp ── */
-  .timeline { display: flex; flex-direction: column; gap: 0; }
+  /* TIMELINE */
+  .timeline { display: flex; flex-direction: column; }
 
   .timeline-row {
     display: grid;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 108px 1fr;
     gap: 16px;
     padding: 14px 0;
     border-bottom: 1px solid var(--border);
@@ -279,32 +273,28 @@
     white-space: nowrap;
   }
 
-  .timeline-content {}
-
   .timeline-title {
     font-size: 13px;
     color: var(--text);
-    margin-bottom: 2px;
+    margin-bottom: 3px;
   }
 
   .timeline-sub {
     font-size: 12px;
     color: var(--muted);
+    line-height: 1.6;
   }
 
-  /* ── contact ── */
-  .contact-row {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  /* CONTACT */
+  .contact-row { display: flex; flex-direction: column; gap: 10px; }
 
   .contact-line {
     font-size: 13px;
     color: var(--muted);
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 12px;
+    flex-wrap: wrap;
   }
 
   .contact-label {
@@ -316,7 +306,7 @@
     flex-shrink: 0;
   }
 
-  /* ── footer ── */
+  /* FOOTER */
   .footer {
     margin-top: 80px;
     padding-top: 24px;
@@ -342,17 +332,34 @@
 
   @keyframes pulse {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+    50% { opacity: 0.35; }
   }
 
-  /* ── typewriter ── */
-  .typewriter { display: inline; }
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
 
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .shell { padding: 40px 20px 80px; }
-    .project-row { grid-template-columns: 24px 1fr; }
+    .hero { margin-bottom: 52px; }
+    .section { margin-bottom: 48px; }
+
+    .project-row { grid-template-columns: 22px 1fr; }
     .project-meta { display: none; }
+    .project-row:hover { margin: 0 -10px; padding: 16px 10px; }
+
     .timeline-row { grid-template-columns: 80px 1fr; gap: 10px; }
+
+    .footer { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+
+  @media (max-width: 420px) {
+    .shell { padding: 28px 16px 60px; }
+    .hero-name { font-size: clamp(28px, 9vw, 42px); }
+    .skills-grid { grid-template-columns: 1fr; }
+    .timeline-row { grid-template-columns: 72px 1fr; gap: 8px; }
+    .project-row { grid-template-columns: 18px 1fr; gap: 0 10px; }
   }
 </style>
 </head>
@@ -363,20 +370,20 @@
   <section class="hero">
     <div class="prompt">whoami</div>
     <h1 class="hero-name">
-      <span class="typewriter" id="tw"></span><span class="cursor" id="cur"></span>
+      <span id="tw"></span><span class="cursor" id="cur"></span>
     </h1>
 
     <p class="hero-sub">
-      CS student at Ilia State University. I build back-end systems, full-stack apps,
-      and the occasional tool that reverse-engineers undocumented APIs at 2am.
-      Currently looking for an internship or junior dev role.
+      Third-year CS student at Ilia State University with a background spanning
+      backend systems, full-stack applications, and low-level hardware work.
+      Comfortable going beyond documentation when the problem requires it.
     </p>
 
     <div class="hero-meta">
       <span class="tag active">open to work</span>
       <span class="tag">Tbilisi, Georgia</span>
-      <span class="tag">3rd year BSc</span>
-      <span class="tag">Codeforces Expert</span>
+      <span class="tag">BSc CS · year 3</span>
+      <span class="tag">remote-friendly</span>
     </div>
 
     <div class="hero-links">
@@ -390,7 +397,7 @@
   <section class="section">
     <div class="section-header">
       <span class="section-title">projects</span>
-      <span class="section-count">5 repos</span>
+      <span class="section-count">6 repos</span>
     </div>
 
     <div class="project-list">
@@ -399,98 +406,108 @@
         <span class="project-index">01</span>
         <div class="project-body">
           <div class="project-name">
-            <a href="https://github.com/200MB/VALORANT_IN_GAME_TRANSLATOR" target="_blank">VALORANT in-game translator</a>
+            <a href="https://github.com/200MB/VALORANT_IN_GAME_TRANSLATOR" target="_blank">Valorant in-game translator</a>
             <span class="lang-pill">Java</span>
           </div>
           <p class="project-desc">
-            Real-time chat translator integrated directly into live Valorant matches.
-            Reverse-engineered the <strong>undocumented XMPP API</strong>, built a polling-based
-            event capture system, and wired it to a translation service — all without touching
-            game performance. Ships as a runnable JAR.
+            Real-time chat translator integrated directly into live Valorant matches with
+            <strong>sub-1s latency</strong> and no impact on game performance.
+            Required reverse-engineering the game's <strong>undocumented XMPP endpoints</strong>
+            from scratch, implementing a polling-based event capture loop, and coordinating
+            a multi-service translation pipeline. Includes configurable profanity filtering,
+            a custom in-game command syntax, and ships as a public STABLE release JAR.
           </p>
         </div>
-        <div class="project-meta">
-          <span class="star has-star">★ 1</span>
-        </div>
+        <div class="project-meta lit">+1 fork</div>
       </div>
 
       <div class="project-row">
         <span class="project-index">02</span>
         <div class="project-body">
           <div class="project-name">
-            <a href="https://github.com/200MB/online_course_management" target="_blank">online course platform</a>
+            <a href="https://github.com/200MB/online_course_management" target="_blank">Online course platform</a>
             <span class="lang-pill">Python</span>
+            <span class="lang-pill">Django REST</span>
           </div>
           <p class="project-desc">
-            Django REST API with <strong>JWT auth</strong> and role-based access control across
-            student, instructor, and admin roles. Documented via Swagger/OpenAPI.
-            Eliminated N+1 query issues using <strong>select_related / prefetch_related</strong>
+            REST API with <strong>JWT authentication</strong> and role-based access control
+            across student, instructor, and admin roles. Documented via Swagger/OpenAPI.
+            Resolved N+1 query issues using <strong>select_related / prefetch_related</strong>
             and custom DRF permission classes.
           </p>
         </div>
-        <div class="project-meta">
-          <span class="star">—</span>
-        </div>
+        <div class="project-meta"></div>
       </div>
 
       <div class="project-row">
         <span class="project-index">03</span>
         <div class="project-body">
           <div class="project-name">
-            <a href="https://github.com/200MB/tktManagementProject" target="_blank">ticket management system</a>
+            <a href="https://github.com/200MB/IMDBJ" target="_blank">IMDBJ</a>
             <span class="lang-pill">Java</span>
           </div>
           <p class="project-desc">
-            Full-stack desktop app with a <strong>JavaFX GUI</strong> and SQL backend.
-            Event-driven architecture covers the full ticket purchase workflow —
-            from browsing to checkout. Demonstrates clean DB schema design
-            and UI/data layer separation.
+            IMDB scraper built in Java. Handles HTTP requests, HTML parsing,
+            and structured data extraction without third-party scraping frameworks.
+            36 commits of iteration toward a clean, user-friendly interface.
           </p>
         </div>
-        <div class="project-meta">
-          <span class="star">—</span>
-        </div>
+        <div class="project-meta"></div>
       </div>
 
       <div class="project-row">
         <span class="project-index">04</span>
         <div class="project-body">
           <div class="project-name">
-            <a href="https://github.com/200MB/pythonBot" target="_blank">Discord bot</a>
-            <span class="lang-pill">Python</span>
+            <a href="https://github.com/200MB/tktManagementProject" target="_blank">Ticket management system</a>
+            <span class="lang-pill">Java</span>
+            <span class="lang-pill">SQL</span>
           </div>
           <p class="project-desc">
-            Modular, async Discord bot built with <strong>asyncio</strong>
-            for server task automation. Deployed to active communities,
-            multi-command support, designed to scale.
+            Full-stack desktop application with a <strong>JavaFX event-driven GUI</strong>
+            over a relational SQL backend. Covers the complete ticket purchase workflow
+            with clean schema design and strict UI/data layer separation.
           </p>
         </div>
-        <div class="project-meta">
-          <span class="star">—</span>
-        </div>
+        <div class="project-meta"></div>
       </div>
 
       <div class="project-row">
         <span class="project-index">05</span>
         <div class="project-body">
           <div class="project-name">
-            <a href="https://github.com/200MB/Competitive_Programming" target="_blank">competitive programming</a>
+            <a href="https://github.com/200MB/pythonBot" target="_blank">Discord bot</a>
+            <span class="lang-pill">Python</span>
+          </div>
+          <p class="project-desc">
+            Async, modular bot built on <strong>asyncio</strong> for server task automation.
+            Deployed to active communities. Modular architecture ensures new commands
+            are isolated from existing functionality.
+          </p>
+        </div>
+        <div class="project-meta"></div>
+      </div>
+
+      <div class="project-row">
+        <span class="project-index">06</span>
+        <div class="project-body">
+          <div class="project-name">
+            <a href="https://github.com/200MB/Competitive_Programming" target="_blank">Competitive programming</a>
             <span class="lang-pill">Java</span>
           </div>
           <p class="project-desc">
-            50+ annotated Codeforces solutions spanning DP, graph theory,
-            and number theory. <strong>Expert rating</strong> on Codeforces.
+            50+ annotated Codeforces solutions covering dynamic programming, graph algorithms,
+            and number theory, including problems at <strong>Expert difficulty</strong>.
+            Solutions are commented for reasoning, not just correctness.
           </p>
         </div>
-        <div class="project-meta">
-          <span class="star">—</span>
-        </div>
+        <div class="project-meta"></div>
       </div>
 
     </div>
   </section>
 
-  <!-- SKILLS -->
+  <!-- STACK -->
   <section class="section">
     <div class="section-header">
       <span class="section-title">stack</span>
@@ -506,6 +523,7 @@
           <span class="skill-item">C / C#</span>
           <span class="skill-item">SQL</span>
           <span class="skill-item">HTML / CSS</span>
+          <span class="skill-item">Verilog HDL</span>
         </div>
       </div>
       <div class="skill-cell">
@@ -537,12 +555,57 @@
         </div>
       </div>
       <div class="skill-cell">
+        <div class="skill-category">hardware</div>
+        <div class="skill-items">
+          <span class="skill-item">Arduino</span>
+          <span class="skill-item">FPGA / Verilog</span>
+          <span class="skill-item">Motor control</span>
+          <span class="skill-item">Circuit assembly</span>
+        </div>
+      </div>
+      <div class="skill-cell">
         <div class="skill-category">practices</div>
         <div class="skill-items">
-          <span class="skill-item">MVC / SOLID</span>
           <span class="skill-item">REST API design</span>
+          <span class="skill-item">MVC / SOLID</span>
           <span class="skill-item">CI/CD</span>
           <span class="skill-item">Agile</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEYOND CODE -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-title">beyond code</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-cell">
+        <div class="skill-category">electrical engineering club</div>
+        <div class="skill-items" style="margin-top:2px;">
+          <span class="skill-item" style="line-height:1.7;color:var(--muted);font-size:12px;">
+            Designed, wired, and programmed Arduino-controlled electric cars from the ground up.
+            Full build cycle from circuit assembly to motor calibration and firmware tuning.
+          </span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-category">FPGA / Verilog</div>
+        <div class="skill-items" style="margin-top:2px;">
+          <span class="skill-item" style="line-height:1.7;color:var(--muted);font-size:12px;">
+            Designed and simulated digital logic circuits using Verilog HDL.
+            Experience working at the hardware description level across combinational and sequential circuits.
+          </span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-category">competitive programming</div>
+        <div class="skill-items" style="margin-top:2px;">
+          <span class="skill-item" style="line-height:1.7;color:var(--muted);font-size:12px;">
+            Active on Codeforces with solutions covering dynamic programming, graph theory,
+            and number theory, including problems at Expert difficulty.
+          </span>
         </div>
       </div>
     </div>
@@ -556,22 +619,22 @@
     <div class="timeline">
       <div class="timeline-row">
         <span class="timeline-year">2023 – now</span>
-        <div class="timeline-content">
+        <div>
           <div class="timeline-title">BSc Computer Science</div>
-          <div class="timeline-sub">Ilia State University · Tbilisi</div>
+          <div class="timeline-sub">Ilia State University, Tbilisi</div>
         </div>
       </div>
       <div class="timeline-row">
         <span class="timeline-year">2025</span>
-        <div class="timeline-content">
+        <div>
           <div class="timeline-title">Professional Python Development</div>
           <div class="timeline-sub">LeverX Inc.</div>
         </div>
       </div>
       <div class="timeline-row">
         <span class="timeline-year">2021 – 2022</span>
-        <div class="timeline-content">
-          <div class="timeline-title">C++, Java, Python programming</div>
+        <div>
+          <div class="timeline-title">C++, Java and Python Programming</div>
           <div class="timeline-sub">Mziuri Tech School</div>
         </div>
       </div>
@@ -586,11 +649,11 @@
     <div class="timeline">
       <div class="timeline-row">
         <span class="timeline-year">2021 – 2022</span>
-        <div class="timeline-content">
-          <div class="timeline-title">Project Developer · Mziuri Tech School</div>
+        <div>
+          <div class="timeline-title">Project Developer, Mziuri Tech School</div>
           <div class="timeline-sub">
-            Built prototypes in Java, Python, and SQL across collaborative projects.
-            Delivered technical presentations and iterated on feedback from instructors and peers.
+            Developed and shipped prototypes in Java, Python, and SQL within a team environment.
+            Delivered technical presentations and iterated on feedback across multiple project cycles.
           </div>
         </div>
       </div>
@@ -623,8 +686,8 @@
   </section>
 
   <footer class="footer">
-    <span><span class="status-dot"></span>open to internship &amp; junior roles</span>
-    <span>bacho bekauri · tbilisi, georgia</span>
+    <span><span class="status-dot"></span>open to internship and junior roles, remote OK</span>
+    <span>bacho bekauri, tbilisi, georgia</span>
   </footer>
 
 </div>
@@ -634,15 +697,14 @@
   const tw = document.getElementById('tw');
   const cur = document.getElementById('cur');
   let i = 0;
-  const speed = 80;
 
   function type() {
     if (i < name.length) {
       tw.textContent += name[i];
       i++;
-      setTimeout(type, speed + Math.random() * 40);
+      setTimeout(type, 75 + Math.random() * 45);
     } else {
-      setTimeout(() => { cur.style.display = 'none'; }, 2200);
+      setTimeout(() => { cur.style.display = 'none'; }, 2400);
     }
   }
 
