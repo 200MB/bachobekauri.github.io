@@ -1,1 +1,0 @@
-# bachobekauri.github.io
